@@ -33,7 +33,7 @@ function getUserInfo() {
                 console.log('请求失败');
 
             }
-            console.log(res.message);
+            // console.log(res.message);
 
             // 渲染用户头像
             renderAvatar(res.data);
@@ -47,21 +47,23 @@ function getUserInfo() {
                 layer.msg('傻卵，你想干嘛');
             }
 
-            console.log(res);
+            // console.log(res);
 
         }
     })
 }
 
-function renderAvatar(user) {
-    var name = user.nickname || user.username
+function renderAvatar(user) { //头像的渲染
+    var name = user.nickname || user.username //如果前面的结果为真则取前面的结果 如果前面没有则取后面的
     $('#welcome').html('欢迎&nbsp;&nbsp' + name)
     var plc = user.user_pic;
     // console.log(plc);
     if (plc !== null) {
         //图片头像
-        $('.layui-nav-img').attr('src', user.user_plc).show();
+        $('.layui-nav-img').attr('src', plc).show();
         $('.text-avatar').hide();
+        // console.log($('.layui-nav-img').attr('src'));
+
     } else if (plc == null) {
         //文本头像
         $('.layui-nav-img').hide();
